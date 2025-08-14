@@ -21,9 +21,9 @@ export const CardWrapper = ({
   showSocial = true,
 }: CardWarpperProps) => {
   return (
-    <Card className="w-[400px] shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] ">
+    <Card className="w-[400px] shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] flex flex-col py-9 ">
       <CardHeader>
-        <Header header="Auth App" label="Welcome back to auth application" />
+        <Header header="Auth App" label={headerlabel} />
       </CardHeader>
       <CardContent>{children}</CardContent>
       <CardFooter>{showSocial && <Social />}</CardFooter>

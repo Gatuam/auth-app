@@ -134,3 +134,8 @@ html {
 body {
   font-family: var(--font-poppins), sans-serif;
 }
+
+::selection {
+  background-color: #232222;
+  color: white;
+}
