@@ -4,7 +4,7 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div className="relative h-screen w-full bg-neutral-100 flex justify-center items-center ">
+      <div className="absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] flex justify-center items-center">
         <LoginForm />
       </div>
     </>
