@@ -17,7 +17,6 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
-import { login } from "../../actions/login";
 import { register } from "../../actions/resgister";
 
 export const RegisterForm = () => {
