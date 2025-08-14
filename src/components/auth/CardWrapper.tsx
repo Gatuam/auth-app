@@ -1,8 +1,9 @@
 "user client";
 import React from "react";
-import { Card, CardContent, CardHeader } from "../ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Header } from "./Header";
 import { Social } from "./Social";
+import { BackButton } from "./BackButton";
 
 interface CardWarpperProps {
   children: React.ReactNode;
@@ -17,17 +18,18 @@ export const CardWrapper = ({
   headerlabel,
   backButtonlable,
   backButtonherf,
-  showSocial,
+  showSocial = true,
 }: CardWarpperProps) => {
   return (
     <Card className="w-[400px] shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] ">
       <CardHeader>
-        <Header label="Welcome back to auth application" />
+        <Header header="Auth App" label="Welcome back to auth application" />
       </CardHeader>
       <CardContent>{children}</CardContent>
-      { 
-        showSocial && < Social />
-      }
+      <CardFooter>{showSocial && <Social />}</CardFooter>
+      <CardFooter>
+        <BackButton herf={backButtonherf} label={backButtonlable} />
+      </CardFooter>
     </Card>
   );
 };
