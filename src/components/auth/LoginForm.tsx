@@ -18,8 +18,14 @@ import * as z from "zod";
 import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
 import { login } from "../../actions/login";
+import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
+  const serachParams = useSearchParams();
+    const urlError =
+      serachParams.get("error") === "OAuthAccountNotLinked"
+        ? "Email already in use with different provder!"
+        : "";
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -35,8 +41,8 @@ export const LoginForm = () => {
     setSuccess("");
     startTransition(() => {
       login(value).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
@@ -86,7 +92,7 @@ export const LoginForm = () => {
                 </FormItem>
               )}
             />
-            <FormError message={error} />
+            <FormError message={error || urlError} />
             <FormSuccess message={success} />
             <Button
               disabled={isPending}

@@ -1,5 +1,6 @@
 import { auth, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
 const page = async () => {
   const session = await auth();
@@ -9,6 +10,7 @@ const page = async () => {
         action={async () => {
           "use server";
           await signOut();
+          redirect('/');
         }}
       >
         <Button className=" cursor-pointer" type="submit">

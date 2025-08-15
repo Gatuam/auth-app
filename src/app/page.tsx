@@ -9,7 +9,9 @@ export default function Home() {
         <h1 className="text-6xl font-semibold text-white drop-shadow-md">
           Auth
         </h1>
-        <p className="text-white r">Authentication app that secure your website</p>
+        <p className="text-white r">
+          Authentication app that secure your website
+        </p>
         <LoginButton>
           <Button className=" cursor-pointer border border-[#6b6b6b55] ">
             Sign in

@@ -18,8 +18,11 @@ import * as z from "zod";
 import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
 import { register } from "../../actions/resgister";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const RegisterForm = () => {
+
+  const router = useRouter();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -31,6 +34,7 @@ export const RegisterForm = () => {
       name: "",
     },
   });
+
   const onSubmit = (value: z.infer<typeof RegisterSchema>) => {
     setError("");
     setSuccess("");
@@ -40,6 +44,7 @@ export const RegisterForm = () => {
         setSuccess(data.success);
       });
     });
+    router.push("/auth/login");
   };
   return (
     <>
