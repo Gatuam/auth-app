@@ -18,8 +18,8 @@ import * as z from "zod";
 import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
 import { register } from "../../actions/resgister";
-import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
 
 export const RegisterForm = () => {
   const router = useRouter();
