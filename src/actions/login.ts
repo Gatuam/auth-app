@@ -1,5 +1,7 @@
 "use server";
 import { signIn } from "@/auth";
+import { getUserByEmail } from "@/data/user";
+import { generateVerificationToken } from "@/lib/token";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { LoginSchema } from "@/schemas";
 import { AuthError } from "next-auth";
@@ -12,6 +14,16 @@ export const login = async (value: z.infer<typeof LoginSchema>) => {
   }
 
   const { email, password } = validatedFileds.data;
+
+  const existUser = await getUserByEmail(email);
+  if (!existUser || !existUser.email || !existUser.password) {
+    return { error: "Email does not exist" };
+  }
+  // if (!existUser.emailVerified) {
+  //   const verificationToken = await generateVerificationToken(existUser.email);
+  //   console.log(verificationToken);
+  //   return { sucess: "Conformation email send!" };
+  // }
   try {
     await signIn("credentials", {
       email,

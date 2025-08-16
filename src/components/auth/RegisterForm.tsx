@@ -19,9 +19,9 @@ import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
 import { register } from "../../actions/resgister";
 import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 export const RegisterForm = () => {
-
   const router = useRouter();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -44,7 +44,6 @@ export const RegisterForm = () => {
         setSuccess(data.success);
       });
     });
-    router.push("/auth/login");
   };
   return (
     <>
