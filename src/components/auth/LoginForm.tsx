@@ -19,13 +19,14 @@ import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
 import { login } from "../../actions/login";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const serachParams = useSearchParams();
-    const urlError =
-      serachParams.get("error") === "OAuthAccountNotLinked"
-        ? "Email already in use with different provder!"
-        : "";
+  const urlError =
+    serachParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provder!"
+      : "";
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -78,7 +79,7 @@ export const LoginForm = () => {
               name="password"
               control={form.control}
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="flex flex-col items-start">
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
@@ -89,6 +90,14 @@ export const LoginForm = () => {
                     />
                   </FormControl>
                   <FormMessage />
+                  <Button
+                    asChild
+                    size={"sm"}
+                    className="text-blue-500 px-0 text-sm font-normal cursor-pointer"
+                    variant={"link"}
+                  >
+                    <Link href="/auth/reset">forget password ?</Link>
+                  </Button>
                 </FormItem>
               )}
             />

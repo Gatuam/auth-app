@@ -37,7 +37,7 @@ export const NewVerificationForm = () => {
       backButtonlable="Back to login page"
       showSocial={false}
     >
-      <div className="flex flex-col justify-center items-center gap-3">
+      <div className="flex flex-col justify-center   items-center gap-3">
         {!success && !error && <Loader className=" animate-spin" />}
         <FormError message={error} />
         <FormSuccess message={success} />

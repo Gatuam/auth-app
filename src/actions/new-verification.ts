@@ -1,7 +1,6 @@
 import { getUserByEmail } from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verification-token";
 import { db } from "@/lib/db";
-import { success } from "zod";
 
 export const newVerfication = async (token: string) => {
   const exitingToken = await getVerificationTokenByToken(token);
