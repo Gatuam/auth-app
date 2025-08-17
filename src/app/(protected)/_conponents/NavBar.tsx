@@ -35,7 +35,7 @@ export const NavBar = () => {
     },
   ];
   return (
-    <nav className="fixed top-10 inset-x-0 mx-auto bg-neutral-100 rounded-md  py-3 max-w-5xl flex justify-between items-center gap-10 w-fit px-7 border border-[#b0b0b01e] ">
+    <nav className="fixed top-10 inset-x-0 mx-auto bg-neutral-100 rounded-md  py-3 max-w-5xl flex justify-between items-center gap-10 w-fit px-7 border border-[#b0b0b01e] shadow-lg ">
       <div className="w-full flex items-center gap-8">
         {navLinks.map((nav, i) => (
           <Tooltip key={i}>
