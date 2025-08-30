@@ -43,10 +43,10 @@ export const NavBar = () => {
               className={`
                 ${
                   pathname === nav.href
-                    ? "bg-white border-neutral-300 scale-103 text-sm"
+                    ? "bg-zinc-900 border-neutral-300 scale-103 text-sm text-white"
                     : ""
                 }
-                flex items-center justify-center text-neutral-600 bg-neutral-100 border border-neutral-200 px-4 py-2 rounded-md shadow-xl  hover:scale-102 hover:bg-white transition-all ease-in gap-3
+                flex items-center justify-center text-neutral-600 bg-neutral-100 border border-neutral-200 px-4 py-2 rounded-md shadow-xl  hover:scale-102 hover:bg-zinc-900 hover:text-white transition-all ease-in gap-3
              `}
             >
               <TooltipTrigger className="flex items-center gap-2" asChild>
