@@ -1,12 +1,13 @@
 'use client'
-export const dynamic = "force-dynamic"
 import { NewVerificationForm } from '@/components/auth/NewVerificationForm'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const Page = () => {
   return (
     <div>
-        <NewVerificationForm/>
+      <Suspense fallback={<div>Loading...</div>}>
+        <NewVerificationForm />
+      </Suspense>
     </div>
   )
 }

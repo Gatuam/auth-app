@@ -8,17 +8,17 @@ import { FormError } from "../form-message/FormError";
 import { FormSuccess } from "../form-message/FormSucess";
 
 export const NewVerificationForm = () => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+  const [error, setError] = useState<string | undefined>();
+  const [success, setSuccess] = useState<string | undefined>();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
-    if (success || error) return;
     if (!token) {
       setError("Missing token");
       return;
     }
+
     newVerfication(token)
       .then((data) => {
         setSuccess(data.success);
@@ -29,7 +29,12 @@ export const NewVerificationForm = () => {
       });
   }, [token]);
 
-  onSubmit();
+  useEffect(() => {
+    if (!success && !error) {
+      onSubmit();
+    }
+  }, [onSubmit, success, error]);
+
   return (
     <CardWrapper
       headerlabel="Confirming your verification"
@@ -37,8 +42,8 @@ export const NewVerificationForm = () => {
       backButtonlable="Back to login page"
       showSocial={false}
     >
-      <div className="flex flex-col justify-center   items-center gap-3">
-        {!success && !error && <Loader className=" animate-spin" />}
+      <div className="flex flex-col justify-center items-center gap-3">
+        {!success && !error && <Loader className="animate-spin" />}
         <FormError message={error} />
         <FormSuccess message={success} />
       </div>

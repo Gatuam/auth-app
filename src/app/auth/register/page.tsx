@@ -1,11 +1,14 @@
 'use client'
 import { RegisterForm } from "@/components/auth/RegisterForm";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
     <>
-      <RegisterForm />
+    <Suspense fallback={<div>Loading...</div>}>
+    <RegisterForm />
+    </Suspense>
+      
     </>
   );
 };
