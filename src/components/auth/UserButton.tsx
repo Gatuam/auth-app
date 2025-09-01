@@ -39,8 +39,6 @@ export const UserButton = () => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className=" cursor-pointer">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuItem
         className=" cursor-pointer"
         >

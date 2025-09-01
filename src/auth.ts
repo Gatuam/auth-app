@@ -40,6 +40,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       token.id = existUser.id;
       token.email = existUser.email;
       token.name = existUser.name;
+      token.isTwoFactorEnable = existUser.isTwoFactorEnable;
       return token;
     },
     async session({ token, session }) {
@@ -48,6 +49,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         session.user.role = token.role as UserRole;
         session.user.email = token.email as string;
         session.user.name = token.name as string;
+        session.user.isTwoFactorEnable = token.isTwoFactorEnable as boolean
       }
       return session;
     },

@@ -1,12 +1,20 @@
-import { auth } from '@/auth'
-import React from 'react'
+import { UserInfo } from '../_conponents/UserInfo';
+import { currentUser } from '@/lib/auth';
+
+
 
 const page = async() => {
-    const session = await auth();
+    const user = await currentUser();
   return (
-    <div>
-      {JSON.stringify(session)}
-    </div>
+       <div className=" bg-white rounded-xl">
+         <UserInfo
+      label='Server Component'
+      user ={user}
+      sublabel="Server data" info="Server side user info"
+      />
+      </div>
+     
+    
   )
 }
 
