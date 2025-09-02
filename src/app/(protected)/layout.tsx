@@ -2,7 +2,7 @@ import { NavBar } from "./_conponents/NavBar";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative h-full w-full flex justify-center items-center mz">
+    <div className="relative h-full w-full flex justify-center items-center mx-auto">
       <NavBar />
 
       {children}
