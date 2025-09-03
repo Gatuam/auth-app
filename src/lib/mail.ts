@@ -6,9 +6,9 @@ if (!SMTP_SERVER_PASS && !SMTP_SERVER_USERNAME) {
   console.log("please add user, password");
 }
 const transporter = nodemailer.createTransport({
-  secure: true,
+  secure: false,
   host: "smtp.gmail.com",
-  port: 465,
+  port: 587,
   auth: {
     user: process.env.APP_USER,
     pass: process.env.APP_PASS,
