@@ -3,8 +3,9 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "./auth.config";
 import { db } from "@/lib/db";
 import { getUserById } from "./data/user";
-import { UserRole } from "./generated/prisma";
+
 import { getTwoFactorConfrimationByUserId } from "./data/two-factor-confomation";
+import { UserRole } from "@prisma/client";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
