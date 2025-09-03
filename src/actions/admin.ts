@@ -1,5 +1,5 @@
 "use server"
-import { UserRole } from "@/generated/prisma";
+import { UserRole } from "@prisma/client";
 import { currentUser } from "@/lib/auth"
 
  

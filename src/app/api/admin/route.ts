@@ -1,4 +1,4 @@
-import { UserRole } from "@/generated/prisma";
+import { UserRole } from "@prisma/client";
 import { currentUser } from "@/lib/auth";
 import { NextResponse } from "next/server";
 import { json, success } from "zod";

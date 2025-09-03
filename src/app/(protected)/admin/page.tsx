@@ -1,9 +1,8 @@
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
-import { useCurrentRole } from "@/hooks/use-current-role";
 import React from "react";
 import { RoleGate } from "../_conponents/RoleGate";
-import { UserRole } from "@/generated/prisma";
+import { UserRole } from "@prisma/client";
 import { FormSuccess } from "@/components/form-message/FormSucess";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
