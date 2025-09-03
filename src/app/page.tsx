@@ -1,6 +1,5 @@
 import { LoginButton } from "@/components/auth/LoginButton";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -13,7 +12,7 @@ export default function Home() {
           <p className="text-neutral-800">
             Authentication app that secure your website
           </p>
-          <LoginButton>
+          <LoginButton mode="modal" asChild>
             <Button className=" cursor-pointer border border-[#6b6b6b55] ">
               Sign in
             </Button>
