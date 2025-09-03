@@ -1,8 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 import { LoginForm } from "./LoginForm";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface LoginButtonProps {
   children: React.ReactNode;
@@ -24,14 +31,17 @@ export const LoginButton = ({
   if (mode === "modal") {
     return (
       <Dialog>
-        <DialogTrigger asChild={asChild}>
-          {children}
-        </DialogTrigger>
+        <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
+        <DialogHeader>
+          <VisuallyHidden>
+            <DialogTitle>Login Form</DialogTitle>
+          </VisuallyHidden>
+        </DialogHeader>
         <DialogContent className=" p-0 w-auto bg-transparent border-none">
-          <LoginForm/> 
+          <LoginForm />
         </DialogContent>
       </Dialog>
-    )
+    );
   }
 
   return (

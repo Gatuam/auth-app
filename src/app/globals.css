@@ -139,3 +139,7 @@ body {
   background-color: #232222;
   color: white;
 }
+
+button {
+  cursor: pointer;
+}
