@@ -27,7 +27,7 @@ export const login = async (value: z.infer<typeof LoginSchema>) => {
   }
   if (!existUser.emailVerified) {
     const verificationToken = await generateVerificationToken(existUser.email);
-    const emailConformationLink = `http://localhost:3000/auth/new-verification?token=${verificationToken.token}`;
+    const emailConformationLink = `${process.env.NEXT_PUBLIC_APP_URL}/auth/new-verification?token=${verificationToken.token}`;
     const verificationTemplate = `<!DOCTYPE html>
 <html>
   <head>

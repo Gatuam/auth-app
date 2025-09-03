@@ -18,7 +18,7 @@ export const reset = async (value: z.infer<typeof ResetSchema>) => {
     return { error: "Email not found" };
   }
   const ResetToken = await generateResetPasswordToken(email);
-  const passwordResetLink = `http://localhost:3000/auth/new-password?token=${ResetToken.token}`;
+  const passwordResetLink = `${process.env.NEXT_PUBLIC_APP_URL}/auth/new-password?token=${ResetToken.token}`;
 
   const resetPasswordTemplate = `<!DOCTYPE html>
 <html>

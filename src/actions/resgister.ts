@@ -28,7 +28,7 @@ export const register = async (value: z.infer<typeof RegisterSchema>) => {
     },
   });
   const verificationToken = await generateVerificationToken(email);
-  const emailConformationLink = `http://localhost:3000/auth/new-verification?token=${verificationToken.token}`;
+  const emailConformationLink = `${process.env.NEXT_PUBLIC_APP_URL}/auth/new-verification?token=${verificationToken.token}`;
   const verificationTemplate = `<!DOCTYPE html>
 <html>
   <head>
