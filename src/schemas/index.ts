@@ -36,10 +36,10 @@ export const NewPasswordSchema = z.object({
 
 export const settingSchema = z
   .object({
-    name: z.optional(z.string().min(1, { message: "Username is required" })),
-    isTwoFAEnable: z.optional(z.boolean()),
+    name: z.optional(z.string()),
+    isTwoFactorEnable: z.optional(z.boolean()),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
-    email: z.optional(z.string().email()),
+   email: z.string().email().optional().or(z.literal("")),
     password: z.optional(
       z.string().min(6, { message: "Password need to be 6 chart" })
     ),

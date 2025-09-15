@@ -84,9 +84,8 @@ export const UserInfo = ({ user, label, sublabel, info }: UserInfoProps) => {
               <p className=" text-sm font-medium">Image</p>
             </TableHead>
             <TableHead className="text-left flex justify-end items-center">
-              
               <Image
-              className=" rounded-full"
+                className=" rounded-full"
                 alt="pf"
                 loading="lazy"
                 width={30}
@@ -105,7 +104,7 @@ export const UserInfo = ({ user, label, sublabel, info }: UserInfoProps) => {
             <TableHead className="text-right ">
               <Badge
                 className={`${
-                  user?.isTwoFactorEnable
+                  user?.isTwoFactorEnable || user?.isOAuth
                     ? "bg-blue-500 text-white dark:bg-blue-600"
                     : "bg-red-700"
                 }`}

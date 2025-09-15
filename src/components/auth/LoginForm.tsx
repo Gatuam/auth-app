@@ -44,19 +44,20 @@ export const LoginForm = () => {
     startTransition(() => {
       login(value)
         .then((data) => {
-          if (data?.error) {
-            form.reset();
-            setError(data.error);
-          }
           if (data?.success) {
             form.reset();
             setSuccess(data.success);
           }
+          if (data?.error) {
+            form.reset();
+            setError(data.error);
+          }
+
           if (data?.twoFactor) {
             setShowTwoFactor(true);
           }
         })
-        .catch(() => setError("Something Went Wrong!"));
+        .catch((err) => setError(err?.message || "Something Went Wrong!"));
     });
   };
   return (
@@ -153,7 +154,7 @@ export const LoginForm = () => {
               className="w-full cursor-pointer"
               type="submit"
             >
-             { showTwoFactor ? "Confirm" :  'Login'}
+              {showTwoFactor ? "Confirm" : "Login"}
             </Button>
           </form>
         </Form>

@@ -46,12 +46,14 @@ const page = () => {
       name: user?.name || "",
       email: user?.email || undefined,
       password: undefined,
-      isTwoFAEnable: false,
+      isTwoFactorEnable: false,
       role: user?.role || "USER",
     },
   });
   const onSubmit = (values: z.infer<typeof settingSchema>) => {
     startTransition(() => {
+      setSuccess('')
+      setError('')
       settings(values)
         .then((data) => {
           if (data.success) {
@@ -90,7 +92,7 @@ const page = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input
                           disabled={isPending}
@@ -102,60 +104,28 @@ const page = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="email"
-                          disabled={isPending}
-                          placeholder="email"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={isPending}
-                          placeholder="password"
-                          type="password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="newPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>New Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          disabled={isPending}
-                          placeholder="*****"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                {user?.isOAuth === false && (
+                  <>
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              disabled={isPending}
+                              placeholder="email"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </>
+                )}
                 <FormField
                   control={form.control}
                   name="role"
@@ -171,9 +141,9 @@ const page = () => {
                           <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Select a role" />
                           </SelectTrigger>
-                          <SelectContent className=" w-full cursor-pointer">
+                          <SelectContent className=" flex w-full cursor-pointer">
                             <SelectItem
-                              className=" cursor-pointer"
+                              className=" cursor-pointer "
                               value={UserRole.USER}
                             >
                               User
@@ -191,20 +161,27 @@ const page = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="isTwoFAEnable"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Two Factor Enable</FormLabel>
-                      <FormControl>
-                        <Switch />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
+                {user?.isOAuth === false && (
+                  <FormField
+                    control={form.control}
+                    name="isTwoFactorEnable"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                        <div className="space-y-0.5">
+                          <FormLabel>Two Factor Authentication</FormLabel>
+                          <FormDescription>
+                            Enable two factor authentication for your account
+                          </FormDescription>
+                        </div>
+                        <Switch
+                          disabled={isPending}
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormItem>
+                    )}
+                  />
+                )}
                 <FormError message={error} />
                 <FormSuccess message={success} />
                 <Button
