@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon, Check } from "lucide-react";
+import Image from "next/image";
 interface UserInfoProps {
   user?: User;
   label: string;
@@ -83,13 +84,14 @@ export const UserInfo = ({ user, label, sublabel, info }: UserInfoProps) => {
               <p className=" text-sm font-medium">Image</p>
             </TableHead>
             <TableHead className="text-left flex justify-end items-center">
-              <img
+              
+              <Image
+              className=" rounded-full"
                 alt="pf"
                 loading="lazy"
                 width={30}
                 height={30}
                 src={user?.image || "/pf-1.png"}
-                style={{ color: "transparent" }}
               />
             </TableHead>
           </TableRow>

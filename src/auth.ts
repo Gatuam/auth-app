@@ -6,6 +6,7 @@ import { getUserById } from "./data/user";
 
 import { getTwoFactorConfrimationByUserId } from "./data/two-factor-confomation";
 import { UserRole } from "@prisma/client";
+import { getAccountByUserid } from "./data/account";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
@@ -37,6 +38,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       if (!token.sub) return token;
       const existUser = await getUserById(token.sub);
       if (!existUser) return token;
+      const existingAccount = await getAccountByUserid(existUser.id);
+      token.isOAuth = !!existingAccount;
       token.role = existUser.role;
       token.id = existUser.id;
       token.email = existUser.email;
@@ -46,11 +49,12 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     },
     async session({ token, session }) {
       if (token) {
+        session.user.isOAuth = !!token.isOAuth;
         session.user.id = token.id as string;
         session.user.role = token.role as UserRole;
         session.user.email = token.email as string;
         session.user.name = token.name as string;
-        session.user.isTwoFactorEnable = token.isTwoFactorEnable as boolean
+        session.user.isTwoFactorEnable = token.isTwoFactorEnable as boolean;
       }
       return session;
     },
