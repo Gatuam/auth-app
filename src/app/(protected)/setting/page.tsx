@@ -46,14 +46,14 @@ const page = () => {
       name: user?.name || "",
       email: user?.email || undefined,
       password: undefined,
-      isTwoFactorEnable: false,
+      isTwoFactorEnable: user?.isTwoFactorEnable || undefined,
       role: user?.role || "USER",
     },
   });
   const onSubmit = (values: z.infer<typeof settingSchema>) => {
     startTransition(() => {
-      setSuccess('')
-      setError('')
+      setSuccess("");
+      setError("");
       settings(values)
         .then((data) => {
           if (data.success) {
