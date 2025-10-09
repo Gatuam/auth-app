@@ -103,15 +103,14 @@ export const UserInfo = ({ user, label, sublabel, info }: UserInfoProps) => {
             </TableHead>
             <TableHead className="text-right ">
               <Badge
-                className={`${
-                  user?.isTwoFactorEnable || user?.isOAuth
+                className={`${user?.isTwoFactorEnable || user?.isOAuth
                     ? "bg-blue-500 text-white dark:bg-blue-600"
                     : "bg-red-700"
-                }`}
+                  }`}
                 variant={user?.isTwoFactorEnable ? "secondary" : "destructive"}
               >
                 <BadgeCheckIcon />
-                {user?.isTwoFactorEnable ? "Verified" : "Not Verified"}
+                {user?.isTwoFactorEnable || user?.isOAuth ? "Verified" : "Not Verified"}
               </Badge>
             </TableHead>
           </TableRow>
