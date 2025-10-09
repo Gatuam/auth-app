@@ -70,7 +70,7 @@ export const settings = async (value: z.infer<typeof settingSchema>) => {
       verificationTemplate
     );
 
-    return {success : 'Verifiation email send'}
+    return { success: "Verifiation email send" };
   }
 
   await db.user.update({

@@ -13,6 +13,9 @@ const transporter = nodemailer.createTransport({
     user: process.env.APP_USER,
     pass: process.env.APP_PASS,
   },
+  pool: true,
+  maxConnections: 5,
+  maxMessages: 100,
 });
 
 async function sendMail(to: string, subject: string, html: string) {
